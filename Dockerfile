@@ -8,5 +8,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD ["python", "./db_create.py"]
 CMD ["python", "./test.py"]

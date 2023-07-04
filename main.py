@@ -24,8 +24,9 @@ def get_args(var):
 
 # Выделенная абстракция
 def write_to_db(func_name, args, results=None, errors=None):
+
     connection = psycopg2.connect(
-        host="db",
+        host=host,
         user=user,
         password=password,
         database=db_name
@@ -35,15 +36,18 @@ def write_to_db(func_name, args, results=None, errors=None):
     current_date = datetime.date.today()
 
     if errors == None:
-        with connection.cursor() as cursor:
-            cursor.execute(
-                """CREATE TABLE ttest(
-                id serial PRIMARY KEY,
-                today DATE,
-                func_name VARCHAR(10000),
-                args VARCHAR(10000),
-                results VARCHAR(10000),
-                errors VARCHAR(10000));""")
+        try:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    """CREATE TABLE ttest(
+                    id serial PRIMARY KEY,
+                    today DATE,
+                    func_name VARCHAR(10000),
+                    args VARCHAR(10000),
+                    results VARCHAR(10000),
+                    errors VARCHAR(10000));""")
+        except:
+            print('table already created')
 
         with connection.cursor() as cursor:
             cursor.execute(
