@@ -58,6 +58,19 @@ def write_to_db(func_name, args, results=None, errors=None):
             print("[INFO] success")
 
     elif errors != None:
+        try:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    """CREATE TABLE ttest(
+                    id serial PRIMARY KEY,
+                    today DATE,
+                    func_name VARCHAR(10000),
+                    args VARCHAR(10000),
+                    results VARCHAR(10000),
+                    errors VARCHAR(10000));""")
+        except:
+            print('table already created')
+            
         with connection.cursor() as cursor:
             cursor.execute(
                 '''INSERT INTO ttest (today, func_name, args, errors) VALUES 
