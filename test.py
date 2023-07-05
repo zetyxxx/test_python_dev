@@ -31,6 +31,12 @@ class TestAddNumbers(unittest.TestCase):
         k4 = -10
         polinom(y4, x4, k4)
 
+    def test5(self):
+        x5 = [2, 3, 4, 5, 6, 7, 7.5, 8, 9, 11, 12]
+        y5 = [18, 16, 15, 17, 20, 23, 25, 28, 31, 30, 29]
+        k5 = 3
+        polinom(y5, x5, k5)
+
 if __name__ == '__main__':
     unittest.main()
 

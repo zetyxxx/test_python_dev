@@ -31,6 +31,7 @@ def write_to_db(func_name, args, results=None, errors=None):
         password=password,
         database=db_name
     )
+
     connection.autocommit = True
 
     current_date = datetime.date.today()
